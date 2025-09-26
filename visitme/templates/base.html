@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VisitMe</title>
+  <!-- <style>
+    /* Reset *
+  </style> -->
+  <!-- Font Awesome for icons -->
+  <!-- <script src="https://kit.fontawesome.com/7e5caa4f2c.js" crossorigin="anonymous"></script> -->
+  <!-- Font Awesome Free 6.x -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-papazNwuR2VPl7OBmUd0i6/B6kVrxvX5Y6Z3srL7ejsuv9d9j0eAlqbnz0rpgZ1CvY3VOBZDPvwhkDAd19gHAw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <script src="{% static 'visitme/js/checkin.js' %}" defer></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'visitme/css/style.css' %}" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="{% url 'landing' %}">
+      <div class="logo">
+        <svg width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g clip-path="url(#clip0_1_105)">
+            <path
+              d="M14.2318 13.8539L17.9424 10.4974C18.7958 9.72701 19.8065 9.1514 20.9045 8.81051C22.0025 8.46961 23.1614 8.37158 24.3011 8.52322L29.2115 9.17336L36.0248 5.49186C36.1255 5.43737 36.2386 5.40997 36.353 5.41235C36.4675 5.41473 36.5793 5.4468 36.6777 5.50542C36.776 5.56404 36.8574 5.6472 36.9139 5.74675C36.9704 5.8463 37.0001 5.95882 37 6.07329V18.5951C36.9999 19.0153 36.8997 19.4294 36.7076 19.8031C36.5154 20.1768 36.237 20.4992 35.8953 20.7438L31.3073 24.0236L21.3675 15.6854L18.0772 18.3494C17.4769 18.8247 16.7158 19.049 15.9538 18.975C15.1917 18.9011 14.4879 18.5348 13.9902 17.9529C13.4925 17.3711 13.2396 16.619 13.2847 15.8547C13.3297 15.0903 13.6692 14.3732 14.2318 13.8539Z"
+              fill="#2859C5" />
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M14.2318 13.8539L17.7944 10.6349C16.8894 9.86737 15.827 9.30773 14.6823 8.99539C13.5375 8.68306 12.3381 8.62562 11.1687 8.82715L6.31644 9.66757L0.993727 6.80272C0.890758 6.74721 0.775115 6.71946 0.658169 6.72219C0.541223 6.72493 0.427004 6.75806 0.326743 6.81832C0.226483 6.87858 0.143635 6.9639 0.0863478 7.06589C0.0290604 7.16788 -0.000693582 7.28303 1.22723e-05 7.4V18.5951C1.22723e-05 19.4884 0.441369 20.3236 1.17873 20.8257L15.5955 30.6545C16.5062 31.277 17.5858 31.6052 18.6889 31.5948C19.7919 31.5844 20.8652 31.2359 21.7639 30.5964L31.7143 23.7857L31.6852 23.7593L31.3073 24.0262L26.3387 19.8611C27.3088 19.513 28.184 18.9428 28.8944 18.1961C29.0452 18.0399 29.1637 17.8555 29.2433 17.6535C29.3228 17.4515 29.3618 17.2359 29.358 17.0188C29.3542 16.8017 29.3077 16.5875 29.2211 16.3884C29.1345 16.1894 29.0096 16.0093 28.8534 15.8585C28.6972 15.7077 28.5129 15.5891 28.3109 15.5096C28.1089 15.43 27.8932 15.391 27.6761 15.3948C27.4591 15.3986 27.2449 15.4451 27.0458 15.5317C26.8467 15.6183 26.6666 15.7433 26.5158 15.8994C26.0565 16.3957 25.4528 16.735 24.79 16.8694C24.2112 16.9804 23.4739 16.9619 22.5462 16.6764L21.3675 15.6854L18.0772 18.3494C17.4769 18.8247 16.7158 19.049 15.9537 18.975C15.1917 18.9011 14.4879 18.5348 13.9902 17.9529C13.4925 17.3711 13.2396 16.619 13.2847 15.8547C13.3297 15.0903 13.6692 14.3732 14.2318 13.8539Z"
+              fill="#8FBFFA" />
+          </g>
+          <defs>
+            <clipPath id="clip0_1_105">
+              <rect width="37" height="37" fill="white" />
+            </clipPath>
+          </defs>
+        </svg>
+
+        <!-- <i class="fa-solid fa-shield-halved"></i> -->
+        <span>VisitMe</span>
+      </div>
+    </a>
+    <a href="#" class="login">Login</a>
+  </header>
+
+
+    <!-- Your content here -->
+    
+    <!-- Toast Container -->
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="toast align-items-center text-white {% if message.tags == 'success' %}bg-success{% elif message.tags == 'error' %}bg-danger{% elif message.tags == 'warning' %}bg-warning{% else %}bg-info{% endif %} border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            {{ message }}
+                        </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- JavaScript to Initialize Toasts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var toastElList = [].slice.call(document.querySelectorAll('.toast'));
+            var toastList = toastElList.map(function(toastEl) {
+                return new bootstrap.Toast(toastEl, {
+                    autohide: true,
+                    delay: 5000 // Toast disappears after 5 seconds
+                });
+            });
+            toastList.forEach(toast => toast.show());
+        });
+    </script>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+</body>
+
+</html>

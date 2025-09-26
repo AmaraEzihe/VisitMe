@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="pass-container">
+  <h1>Pass Generated Successfully</h1>
+  <div class="pass-card">
+    <div class="tag-holder">
+      <span class="pass-label">VISITORS PASS</span>
+      <span class="pass-date">{{visit.CheckinDate}}</span>
+    </div>
+    <div class="pass-content">
+      <div class="pass-content2">
+        {% if photo_base64 %}
+        <img src="data:image/png;base64,{{ photo_base64 }}" alt="Visitor Photo" class="pass-photo">
+        {% else %}
+        <p>No photo available</p>
+        {% endif %}
+        <div class="pass-details">
+          <h2>{{visit.FullName}}</h2>
+          <p>Who to See: {{visit.WhoToSee}}</p>
+          <p>Visitor ID: {{visit.VisitorNo}}</p>
+        </div>
+      </div>
+      <div class="pass-qr">
+        <img src="data:image/png;base64,{{ qrcode }}" alt="QR Code" class="qr-code">
+      </div>
+    </div>
+    <form action="{%url 'sendmail' visit.id %}" method="get">
+    <button id='download-pdf-btn' class="print-btn" >Send Pass Details</button></form>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+{% endblock %}

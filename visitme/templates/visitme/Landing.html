@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Landing Page{% endblock %}
+
+{% block content %}
+
+    <section class="hero">
+      <h1>Welcome to <span>Banklo Limited</span></h1>
+      <p>Lets get you started</p>
+
+      <div class="actions">
+        <div class="card">
+          <!-- <i class="fas fa-arrow-left"></i> -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="#1B72E7"
+            width="24"
+            height="24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m19.5 4.5-15 15m0 0h11.25m-11.25 0V8.25"
+            />
+          </svg>
+           <a href="{% url 'checkin' %}"><span>Check In</span></a>
+        </div>
+        <div class="card">
+          <!-- <i class="fa-solid fa-arrow-right"></i> -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="#1B72E7"
+            class="size-6"
+            width="24"
+            height="24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m4.5 4.5 15 15m0 0V8.25m0 11.25H8.25"
+            />
+          </svg>
+          <a href="{% url 'checkout' %}"><span>Check Out</span></a>
+        </div>
+      </div>
+    </section>
+{% endblock %}

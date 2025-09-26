@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1 style="text-align: center;"><strong>VISITOR'S PASS</strong></h1>
+<div class="container">
+    <h2 style="text-align: center; margin-bottom: 20px;">Your visit details are below</h2>
+    <img src="data:image/jpeg;base64,{{ photo_base64 }}" alt="Visitor Photo"
+        style="width:100px; height:100px; border-radius: 50%; display: block; margin-left: auto; margin-right: auto;" />
+    <div>
+        <h3>{{visitor.FullName}}</h3>
+        <h5>{{visitor.VisitorNo}}</h5>
+    </div>
+
+</div>
+
+<table style="height: 305px; width: 99.5781%; border-collapse: collapse;" border="1">
+    <tbody>
+        <tr style="height: 78px;">
+            <td style="width: 5.37971%; height: 29px;">
+                <h4>SN</h4>
+            </td>
+            <td style="width: 30.8491%; height: 29px;">
+                <h4>DESCRIPTIONS</h4>
+            </td>
+            <td style="width: 63.7712%; height: 29px;">
+                <h4>&nbsp;DETAILS</h4>
+            </td>
+        </tr>
+        <tr style="height: 46px;">
+            <td style="width: 5.37971%; height: 46px;">
+                <p>1</p>
+            </td>
+            <td style="width: 30.8491%; height: 46px;">
+                <p>Email Address</p>
+            </td>
+            <td style="width: 63.7712%; height: 46px;">
+                <p>{{visitor.EmailAddress}}</p>
+            </td>
+        </tr>
+        <tr style="height: 46px;">
+            <td style="width: 5.37971%; height: 46px;">
+                <p>2</p>
+            </td>
+            <td style="width: 30.8491%; height: 46px;">
+                <p>Phone Number</p>
+            </td>
+            <td style="width: 63.7712%; height: 46px;">
+                <p>{{visitor.Phoneno}}</p>
+            </td>
+        </tr>
+        <tr style="height: 46px;">
+            <td style="width: 5.37971%; height: 46px;">
+                <p>3</p>
+            </td>
+            <td style="width: 30.8491%; height: 46px;">
+                <p>Occupation</p>
+            </td>
+            <td style="width: 63.7712%; height: 46px;">
+                <p>{{visitor.Occupation}}</p>
+            </td>
+        </tr>
+        <tr style="height: 46px;">
+            <td style="width: 5.37971%; height: 46px;">
+                <p>4</p>
+            </td>
+            <td style="width: 30.8491%; height: 46px;">
+                <p>Address</p>
+            </td>
+            <td style="width: 63.7712%; height: 46px;">
+                <p>{{visitor.Address}}</p>
+            </td>
+        </tr>
+        <tr style="height: 46px;">
+            <td style="width: 5.37971%; height: 46px;">
+                <p>5</p>
+            </td>
+            <td style="width: 30.8491%; height: 46px;">
+                <p>Who To See</p>
+            </td>
+            <td style="width: 63.7712%; height: 46px;">
+                <p>{{visitor.WhoToSee}}</p>
+            </td>
+        </tr>
+        <tr style="height: 46px;">
+            <td style="width: 5.37971%; height: 46px;">
+                <p>6</p>
+            </td>
+            <td style="width: 30.8491%; height: 46px;">
+                <p>Reason For Visit</p>
+            </td>
+            <td style="width: 63.7712%; height: 46px;">
+                <p>{{visitor.ReasonForVisit}}</p>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 5.37971%;">
+                <p>7</p>
+            </td>
+            <td style="width: 30.8491%;">
+                <p>Check in Time</p>
+            </td>
+            <td style="width: 63.7712%;">
+                <p>{{visitor.CheckinDate}} {{visitor.CheckinTime}}</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>

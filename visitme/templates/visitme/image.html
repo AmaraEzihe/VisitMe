@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+  .camera-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  #camera {
+    width: 90%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    background: #000;
+  }
+
+  #capture-btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    background: #007bff;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  #capture-btn:hover {
+    background: #0056b3;
+  }
+
+  #capture-btn:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+  }
+
+  .camera-container h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    justify-self: center;
+  }
+
+  /* Responsive Design visitor pass*/
+  @media (max-width: 768px) {
+    .camera-container {
+      padding: 15px;
+    }
+
+    .camera-container h1 {
+      font-size: 1.2rem;
+    }
+
+  }
+
+  @media (max-width: 480px) {
+    .camera-container {
+      padding: 10px;
+
+    }
+
+    .camera-container h1 {
+      font-size: 1.0rem;
+    }
+  }
+</style>
+
+<div class="camera-container">
+
+  <h1>Pass Generated Successfully</h1>
+  <video id="camera" autoplay playsinline></video>
+  <button id="capture-btn">📸 Capture</button>
+  <canvas id="canvas" width="320" height="240" style="display:none;"></canvas>
+</div>
+
+<script>
+  const visitorId = "{{ visitor.id }}";
+  const video = document.getElementById("camera");
+  const canvas = document.getElementById("canvas");
+  const captureBtn = document.getElementById("capture-btn");
+  const context = canvas.getContext("2d");
+
+  // Utility: Get CSRF token for Django
+  function getCookie(name) {
+    const cookieStr = document.cookie;
+    if (!cookieStr) return null;
+    return cookieStr
+      .split(";")
+      .map(c => c.trim())
+      .find(c => c.startsWith(name + "="))
+      ?.split("=")[1] || null;
+  }
+
+  // Initialize camera
+  async function initCamera() {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      video.srcObject = stream;
+    } catch (err) {
+      console.error("Camera access denied:", err);
+      alert("Unable to access camera. Please check permissions.");
+    }
+  }
+
+  // Capture photo and send to backend
+  async function capturePhoto() {
+    try {
+      // Disable button briefly to avoid double clicks
+      captureBtn.disabled = true;
+
+      // Draw frame to canvas
+      context.drawImage(video, 0, 0, canvas.width, canvas.height);
+      const imageData = canvas.toDataURL("image/png");
+
+      // Send to Django backend
+      const response = await fetch(`/visitorphoto/${visitorId}/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRFToken": getCookie("csrftoken")
+        },
+        body: JSON.stringify({ image: imageData })
+      });
+
+      const data = await response.json();
+
+      if (data.status === "success") {
+        alert("Image saved successfully!");
+        window.location.href = data.redirect_url;
+      } else {
+        alert("Error: " + (data.message || "Unknown error"));
+      }
+    } catch (err) {
+      console.error("Upload error:", err);
+      alert("Something went wrong while saving the photo.");
+    } finally {
+      captureBtn.disabled = false; // Re-enable button
+    }
+  }
+
+  // Event listeners
+  captureBtn.addEventListener("click", capturePhoto);
+
+  // Start camera on page load
+  initCamera();
+</script>
+
+
+{% endblock %}
