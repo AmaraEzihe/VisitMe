@@ -8,9 +8,15 @@ class Migration(migrations.Migration):
     dependencies = [
         ('visitme', '0005_visitorqrcode'),
     ]
-
-    operations = [
-        migrations.AlterField(
+    
+     operations = [
+        # Drop old CheckoutTime
+        migrations.RemoveField(
+            model_name='visitors',
+            name='CheckoutTime',
+        ),
+        # Add it again as DateTimeField
+        migrations.AddField(
             model_name='visitors',
             name='CheckoutTime',
             field=models.DateTimeField(null=True),
@@ -18,6 +24,25 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='visitors',
             name='VisitationDuration',
-            field=models.CharField(null=True),
+            field=models.CharField(null=True, max_length=255),
         ),
     ]
+
+
+
+
+
+    # operations = [
+    #     migrations.AlterField(
+    #         model_name='visitors',
+    #         name='CheckoutTime',
+    #         field=models.DateTimeField(null=True),
+    #     ),
+    #     migrations.AlterField(
+    #         model_name='visitors',
+    #         name='VisitationDuration',
+    #         field=models.CharField(null=True),
+    #     ),
+    # ]
+
+    
