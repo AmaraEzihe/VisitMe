@@ -6,10 +6,9 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('visitme', '0005_visitorqrcode'),
-    ]
+        ('visitme', '0005_visitorqrcode'),]
     
-     operations = [
+    operations = [
         # Drop old CheckoutTime
         migrations.RemoveField(
             model_name='visitors',
